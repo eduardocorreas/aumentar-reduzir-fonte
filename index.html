@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aumentar e reduzir texto de forma dinâmica</title>
+</head>
+<body>
+    <button onclick="changeFontSize('aumentar')">Aumentar</button>
+    <button onclick="changeFontSize('reduzir')">Reduzir</button>
+    <h1>Título</h1>
+    <p>Descrição</p>
+
+    <script>
+        function changeFontSize(action){
+            const elements = ['h1', 'p'];
+            elements.map(element=>{
+                
+                const selector = document.querySelector(element);
+                let value = getComputedStyle(selector).getPropertyValue('font-size');
+                value = value.replace('px', '');
+                value = action === 'aumentar' ? parseInt(value) + 1 : parseInt(value) - 1;
+                selector.style.fontSize =  `${value}px`;
+            })
+        }
+    </script>
+</body>
+</html>
